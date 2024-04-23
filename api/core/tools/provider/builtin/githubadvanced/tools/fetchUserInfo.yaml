@@ -1,0 +1,28 @@
+identity:
+  name: fetchUserInfo
+  author: Richards Tu
+  label:
+    en_US: Fetch User Information
+    zh_Hans: 获取用户信息
+description:
+  human:
+    en_US: Fetches detailed information about a GitHub user.
+    zh_Hans: 获取 GitHub 用户的详细信息。
+  llm: A tool for fetching detailed information about a GitHub user.
+parameters:
+  - name: username
+    type: string
+    required: true
+    label:
+      en_US: Username
+      zh_Hans: 用户名
+    human_description:
+      en_US: Username of the user to fetch.
+      zh_Hans: 要获取的用户的用户名。
+    llm_description: Username of the user to fetch.
+    form: llm
+output:
+  type: json
+  properties:
+    - name: user
+      ref: User

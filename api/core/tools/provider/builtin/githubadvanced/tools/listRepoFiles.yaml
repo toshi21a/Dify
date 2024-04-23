@@ -1,0 +1,70 @@
+identity:
+  name: listRepoFiles
+  author: Richards Tu
+  label:
+    en_US: List Repository Files
+    zh_Hans: 列出仓库文件
+description:
+  human:
+    en_US: Lists files and directories in a specified path within a GitHub repository.
+    zh_Hans: 列出 GitHub 仓库中指定路径下的文件和目录。
+  llm: A tool for listing files and directories in a specified path within a GitHub repository.
+parameters:
+  - name: owner
+    type: string
+    required: true
+    label:
+      en_US: Repository Owner
+      zh_Hans: 仓库所有者
+    human_description:
+      en_US: The owner of the repository.
+      zh_Hans: 仓库所有者
+    llm_description: The owner of the repository.
+    form: llm
+  - name: repo
+    type: string
+    required: true
+    label:
+      en_US: Repository Name
+      zh_Hans: 仓库名称
+    human_description:
+      en_US: The name of the repository.
+      zh_Hans: 仓库名称
+    llm_description: The name of the repository.
+    form: llm
+  - name: path
+    type: string
+    required: true
+    label:
+      en_US: Path
+      zh_Hans: 路径
+    human_description:
+      en_US: The path to the file or directory.
+      zh_Hans: 文件或目录的路径
+    llm_description: The path to the file or directory.
+    form: llm
+output:
+  type: json
+  properties:
+    - name: files
+      type: array
+      items_type: object
+      properties:
+        - name: name
+          type: string
+        - name: path
+          type: string
+        - name: sha
+          type: string
+        - name: size
+          type: number
+        - name: url
+          type: string
+        - name: html_url
+          type: string
+        - name: git_url
+          type: string
+        - name: download_url
+          type: string
+        - name: type
+          type: string

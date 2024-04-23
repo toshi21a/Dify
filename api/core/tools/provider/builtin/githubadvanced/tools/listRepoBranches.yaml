@@ -1,0 +1,99 @@
+identity:
+  name: listRepoBranches
+  author: Richards Tu
+  label:
+    en_US: List Repository Branches
+    zh_Hans: 列出仓库分支
+description:
+  human:
+    en_US: List all branches in a specific GitHub repository.
+    zh_Hans: 列出特定 GitHub 仓库中的所有分支。
+  llm: A tool for listing all branches in a specific GitHub repository.
+parameters:
+  - name: owner
+    type: string
+    required: true
+    label:
+      en_US: Repository Owner
+      zn_Hans: 仓库所有者
+    human_description:
+      en_US: The account owner of the repository.
+      zn_Hans: 仓库所有者
+    llm_description: The account owner of the repository.
+    form: llm
+  - name: repo
+    type: string
+    required: true
+    label:
+      en_US: Repository Name
+      zn_Hans: 仓库名称
+    human_description:
+      en_US: The name of the repository.
+      zn_Hans: 仓库名称
+    llm_description: The name of the repository.
+    form: llm
+  - name: protected
+    type: boolean
+    required: false
+    label:
+      en_US: Protected
+    human_description:
+      en_US: Set to true to return only protected branches.
+      zn_Hans: 设置为 true 以仅返回受保护的分支。
+    options:
+      - name: true
+        label:
+          en_US: True
+          zn_Hans: 是
+        value: true
+      - name: false
+        label:
+          en_US: False
+          zn_Hans: 否
+        value: false
+    default: false
+    form: form
+  - name: page
+    type: number
+    required: true
+    default: 10
+    label:
+      en_US: Page
+      zh_Hans: 页码
+    human_description:
+      en_US: Page number of the results to fetch.
+      zh_Hans: 要获取的结果的页码。
+    form: form
+    min: 1
+    max: 20
+  - name: per_page
+    type: number
+    required: true
+    default: 10
+    label:
+      en_US: Results per Page
+      zh_Hans: 每页结果数
+    human_description:
+      en_US: Number of results per page.
+      zh_Hans: 每页的结果数。
+    form: form
+    min: 1
+    max: 20
+output:
+  type: json
+  properties:
+    - name: branches
+      type: array
+      items_type: object
+      properties:
+        - name: name
+          type: string
+        - name: commit
+          type: object
+          properties:
+            - name: sha
+              type: string
+            - name: url
+              type: string
+        - name: protected
+          type: boolean

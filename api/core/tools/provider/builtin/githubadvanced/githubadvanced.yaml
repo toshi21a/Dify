@@ -1,0 +1,12 @@
+identity:
+  author: Richards Tu
+  name: githubadvanced
+  label:
+    en_US: Github Advanced
+    zh_Hans: Github 高级
+    pt_BR: Github Avançado
+  description:
+    en_US: GitHub is an online platform for software development using Git. This provider provides advanced features for GitHub.
+    zh_Hans: GitHub 是一个使用 Git 进行软件开发的在线平台。此工具为 GitHub 提供了高级功能。
+    pt_BR: GitHub é uma plataforma online para desenvolvimento de software usando Git. Este provedor fornece recursos avançados para o GitHub.
+  icon: icon.svg
