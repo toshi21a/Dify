@@ -1,9 +1,9 @@
-import requests
-
 from typing import Any, Union
 
-from core.tools.tool.builtin_tool import BuiltinTool
+import requests
+
 from core.tools.entities.tool_entities import ToolInvokeMessage
+from core.tools.tool.builtin_tool import BuiltinTool
 
 
 class ListRepoBranchesTool(BuiltinTool):

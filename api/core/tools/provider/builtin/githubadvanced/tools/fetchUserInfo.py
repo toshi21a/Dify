@@ -1,6 +1,6 @@
-import requests
-
 from typing import Any, Union
+
+import requests
 
 from core.tools.entities.tool_entities import ToolInvokeMessage
 from core.tools.tool.builtin_tool import BuiltinTool
