@@ -1,4 +1,5 @@
 import requests
+
 from typing import Any, Union
 
 from core.tools.tool.builtin_tool import BuiltinTool
