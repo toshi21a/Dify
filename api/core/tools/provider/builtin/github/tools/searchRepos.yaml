@@ -1,6 +1,6 @@
 identity:
   name: searchRepos
-  author: Richards Tu
+  author: Richards Tu, CharlieWei
   label:
     en_US: Search Repositories
     zh_Hans: 搜索代码库
