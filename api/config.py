@@ -213,6 +213,8 @@ class Config:
         self.ALIYUN_OSS_ACCESS_KEY=get_env('ALIYUN_OSS_ACCESS_KEY')
         self.ALIYUN_OSS_SECRET_KEY=get_env('ALIYUN_OSS_SECRET_KEY')
         self.ALIYUN_OSS_ENDPOINT=get_env('ALIYUN_OSS_ENDPOINT')
+        self.ALIYUN_OSS_REGION=get_env('ALIYUN_OSS_REGION')
+        self.ALIYUN_OSS_AUTH_VERSION=get_env('ALIYUN_OSS_AUTH_VERSION')
 
         # ------------------------
         # Vector Store Configurations.

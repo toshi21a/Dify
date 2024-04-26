@@ -45,10 +45,17 @@ class Storage:
                                             credential=sas_token)
         elif self.storage_type == 'aliyun-oss':
             self.bucket_name = app.config.get('ALIYUN_OSS_BUCKET_NAME')
+            oss_auth_method = aliyun_s3.Auth
+            region = None
+            if app.config.get('ALIYUN_OSS_AUTH_VERSION') == 'v4':
+                oss_auth_method = aliyun_s3.AuthV4
+                region = app.config.get('ALIYUN_OSS_REGION')
+            oss_auth = oss_auth_method(app.config.get('ALIYUN_OSS_ACCESS_KEY'), app.config.get('ALIYUN_OSS_SECRET_KEY'))
             self.client = aliyun_s3.Bucket(
-                aliyun_s3.Auth(app.config.get('ALIYUN_OSS_ACCESS_KEY'), app.config.get('ALIYUN_OSS_SECRET_KEY')),
+                oss_auth,
                 app.config.get('ALIYUN_OSS_ENDPOINT'),
                 self.bucket_name,
+                region=region,
                 connect_timeout=30
             )
         else:
