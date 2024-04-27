@@ -19,6 +19,7 @@ import {
 import AppPublisher from '../../app/app-publisher'
 import { ToastContext } from '../../base/toast'
 import RunAndHistory from './run-and-history'
+import UndoRedo, { type UndoRedoComponentProps } from './undo-redo'
 import EditingTitle from './editing-title'
 import RunningTitle from './running-title'
 import RestoringTitle from './restoring-title'
@@ -30,7 +31,9 @@ import { useStore as useAppStore } from '@/app/components/app/store'
 import { publishWorkflow } from '@/service/workflow'
 import { ArrowNarrowLeft } from '@/app/components/base/icons/src/vender/line/arrows'
 
-const Header: FC = () => {
+export type HeaderProps = {} & UndoRedoComponentProps
+
+const Header: FC<HeaderProps> = ({ handleUndo, handleRedo }) => {
   const { t } = useTranslation()
   const workflowStore = useWorkflowStore()
   const appDetail = useAppStore(s => s.appDetail)
@@ -134,6 +137,21 @@ const Header: FC = () => {
       {
         normal && (
           <div className='flex items-center'>
+            {
+              nodesReadOnly && (
+                <Button
+                  className={`
+                    mr-2 px-3 py-0 h-8 bg-white text-[13px] font-medium text-primary-600
+                    border-[0.5px] border-gray-200 shadow-xs
+                  `}
+                  onClick={handleGoBackToEdit}
+                >
+                  <ArrowNarrowLeft className='w-4 h-4 mr-1' />
+                  {t('workflow.common.goBackToEdit')}
+                </Button>
+              )
+            }
+            <UndoRedo handleUndo={handleUndo} handleRedo={handleRedo} />
             <RunAndHistory />
             <div className='mx-2 w-[1px] h-3.5 bg-gray-200'></div>
             <Button
