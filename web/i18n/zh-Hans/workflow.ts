@@ -1,5 +1,7 @@
 const translation = {
   common: {
+    undo: '撤销',
+    redo: '重做',
     editing: '编辑中',
     autoSaved: '自动保存',
     unpublished: '未发布',

@@ -1,5 +1,7 @@
 const translation = {
   common: {
+    undo: 'Hoàn tác',
+    redo: 'Làm lại',
     editing: 'Chỉnh sửa',
     autoSaved: 'Tự động lưu',
     unpublished: 'Chưa xuất bản',

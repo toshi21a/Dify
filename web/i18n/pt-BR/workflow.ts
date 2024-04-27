@@ -1,5 +1,7 @@
 const translation = {
   common: {
+    undo: 'Desfazer',
+    redo: 'Refazer',
     editing: 'Editando',
     autoSaved: 'Auto-salvo',
     unpublished: 'Não publicado',
