@@ -13,6 +13,7 @@ select = [
     "I001", # unsorted-imports
     "I002", # missing-required-import
     "UP",   # pyupgrade rules
+    "S506", # unsafe-yaml-load
 ]
 ignore = [
     "F403", # undefined-local-with-import-star
