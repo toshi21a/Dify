@@ -49,6 +49,7 @@ import {
   initialNodes,
 } from './utils'
 import { WORKFLOW_DATA_UPDATE } from './constants'
+import { WorkflowHistoryProvider } from './workflow-history-store'
 import Loading from '@/app/components/base/loading'
 import { FeaturesProvider } from '@/app/components/base/features'
 import type { Features as FeaturesData } from '@/app/components/base/features/types'
@@ -133,6 +134,8 @@ const Workflow: FC<WorkflowProps> = memo(({
     handleNodeCut,
     handleNodeDeleteSelected,
     handleNodePaste,
+    handleHistoryBack,
+    handleHistoryForward,
   } = useNodesInteractions()
   const {
     handleEdgeEnter,
@@ -156,6 +159,8 @@ const Workflow: FC<WorkflowProps> = memo(({
   useKeyPress(['ctrl.x', 'meta.x'], handleNodeCut)
   useKeyPress(['ctrl.v', 'meta.v'], handleNodePaste)
   useKeyPress(['ctrl.alt.d', 'meta.shift.d'], handleNodeDuplicateSelected)
+  useKeyPress(['ctrl.z', 'meta.z'], handleHistoryBack)
+  useKeyPress(['ctrl.y', 'meta.y', 'ctrl.shift.z', 'meta.shift.z'], handleHistoryForward)
 
   return (
     <div
@@ -166,7 +171,7 @@ const Workflow: FC<WorkflowProps> = memo(({
         ${nodeAnimation && 'workflow-node-animation'}
       `}
     >
-      <Header />
+      <Header handleRedo={handleHistoryForward} handleUndo={handleHistoryBack} />
       <Panel />
       <Operator />
       {
@@ -265,13 +270,17 @@ const WorkflowWrap = memo(() => {
 
   return (
     <ReactFlowProvider>
-      <FeaturesProvider features={initialFeatures}>
-        <Workflow
-          nodes={nodesData}
-          edges={edgesData}
-          viewport={data?.graph.viewport}
-        />
-      </FeaturesProvider>
+      <WorkflowHistoryProvider
+        nodes={nodesData as any[]}
+        edges={edgesData} >
+        <FeaturesProvider features={initialFeatures}>
+          <Workflow
+            nodes={nodesData}
+            edges={edgesData}
+            viewport={data?.graph.viewport}
+          />
+        </FeaturesProvider>
+      </WorkflowHistoryProvider>
     </ReactFlowProvider>
   )
 })

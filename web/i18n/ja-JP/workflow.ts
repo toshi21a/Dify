@@ -1,5 +1,7 @@
 const translation = {
   common: {
+    undo: '元に戻す',
+    redo: 'やり直し',
     editing: '編集中',
     autoSaved: '自動保存済み',
     unpublished: '未公開',
