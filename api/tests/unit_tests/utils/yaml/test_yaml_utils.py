@@ -58,10 +58,10 @@ def test_load_valid_yaml_file(prepare_example_yaml_file):
     assert len(yaml_data) > 0
     assert yaml_data['age'] == 30
     assert yaml_data['gender'] == 'male'
-    assert yaml_data.get('empty_key') is None
-    assert yaml_data.get('non_existed_key') is None
     assert yaml_data['address']['city'] == 'Example City'
     assert set(yaml_data['languages']) == {'Python', 'Java', 'C++'}
+    assert yaml_data.get('empty_key') is None
+    assert yaml_data.get('non_existed_key') is None
 
 
 def test_load_invalid_yaml_file(prepare_invalid_yaml_file):
