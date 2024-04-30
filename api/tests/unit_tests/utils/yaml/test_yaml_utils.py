@@ -19,9 +19,10 @@ address:
 age: 30
 gender: male
 languages:
-- Python
-- Java
-- C++
+    - Python
+    - Java
+    - C++
+empty_key:
       """)
     return str(file_path)
 
@@ -35,7 +36,6 @@ address:
            city: Example City
     country: Example Country
 age: 30
-empty_key:
 gender: male
 languages:
 - Python
@@ -59,6 +59,7 @@ def test_load_valid_yaml_file(prepare_example_yaml_file):
     assert yaml_data['age'] == 30
     assert yaml_data['gender'] == 'male'
     assert yaml_data.get('empty_key') is None
+    assert yaml_data.get('non_existed_key') is None
     assert yaml_data['address']['city'] == 'Example City'
     assert set(yaml_data['languages']) == {'Python', 'Java', 'C++'}
 
