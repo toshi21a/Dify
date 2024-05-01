@@ -66,6 +66,7 @@ jobs:
 
       - name: Set up Vector Stores (Weaviate, Qdrant, Milvus, PgVecto-RS)
         uses: hoverkraft-tech/compose-action@v2.0.0
+        if: ${{ matrix.os == 'ubuntu-latest' }}
         with:
           compose-file: |
             docker/docker-compose.middleware.yaml
@@ -81,4 +82,5 @@ jobs:
             pgvecto-rs
 
       - name: Test Vector Stores
+        if: ${{ matrix.os == 'ubuntu-latest' }}
         run: dev/pytest/pytest_vdb.sh
