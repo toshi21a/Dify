@@ -56,16 +56,16 @@ jobs:
         if: ${{ matrix.os == 'windows-latest' }}
 
       - name: Run Unit tests
-        run: dev/pytest/pytest_unit_tests.sh
+        run: bash dev/pytest/pytest_unit_tests.sh
 
       - name: Run ModelRuntime
-        run: dev/pytest/pytest_model_runtime.sh
+        run: bash dev/pytest/pytest_model_runtime.sh
 
       - name: Run Tool
-        run: dev/pytest/pytest_tools.sh
+        run: bash dev/pytest/pytest_tools.sh
 
       - name: Run Workflow
-        run: dev/pytest/pytest_workflow.sh
+        run: bash dev/pytest/pytest_workflow.sh
 
       - name: Set up Vector Stores (Weaviate, Qdrant, Milvus, PgVecto-RS)
         uses: hoverkraft-tech/compose-action@v2.0.0
