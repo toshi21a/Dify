@@ -1,3 +1,5 @@
+from textwrap import dedent
+
 import pytest
 
 from core.utils.position_helper import get_position_map
@@ -6,15 +8,16 @@ from core.utils.position_helper import get_position_map
 @pytest.fixture
 def prepare_example_positions_yaml(tmp_path, monkeypatch) -> str:
     monkeypatch.chdir(tmp_path)
-    tmp_path.joinpath("example_positions.yaml").write_text("""
-- first
-- second
-# - commented
-- third
-
-- 9999999999999
-- forth
-            """)
+    tmp_path.joinpath("example_positions.yaml").write_text(dedent(
+        """\
+        - first
+        - second
+        # - commented
+        - third
+        
+        - 9999999999999
+        - forth
+        """))
     return str(tmp_path)
 
 

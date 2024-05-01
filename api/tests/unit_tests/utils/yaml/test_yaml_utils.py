@@ -1,3 +1,5 @@
+from textwrap import dedent
+
 import pytest
 from yaml import YAMLError
 
@@ -12,18 +14,19 @@ NON_EXISTING_YAML_FILE = 'non_existing_file.yaml'
 def prepare_example_yaml_file(tmp_path, monkeypatch) -> str:
     monkeypatch.chdir(tmp_path)
     file_path = tmp_path.joinpath(EXAMPLE_YAML_FILE)
-    file_path.write_text("""
-address:
-    city: Example City
-    country: Example Country
-age: 30
-gender: male
-languages:
-    - Python
-    - Java
-    - C++
-empty_key:
-      """)
+    file_path.write_text(dedent(
+        """\
+        address:
+            city: Example City
+            country: Example Country
+        age: 30
+        gender: male
+        languages:
+            - Python
+            - Java
+            - C++
+        empty_key:
+        """))
     return str(file_path)
 
 
@@ -31,17 +34,18 @@ empty_key:
 def prepare_invalid_yaml_file(tmp_path, monkeypatch) -> str:
     monkeypatch.chdir(tmp_path)
     file_path = tmp_path.joinpath(INVALID_YAML_FILE)
-    file_path.write_text("""
-address:
-           city: Example City
-    country: Example Country
-age: 30
-gender: male
-languages:
-- Python
-- Java
-- C++
-      """)
+    file_path.write_text(dedent(
+        """\
+        address:
+                   city: Example City
+            country: Example Country
+        age: 30
+        gender: male
+        languages:
+        - Python
+        - Java
+        - C++
+        """))
     return str(file_path)
 
 
