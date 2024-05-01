@@ -52,11 +52,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r ./api/requirements.txt -r ./api/requirements-dev.txt
 
-      - uses: cygwin/cygwin-install-action@master
-        if: ${{ matrix.os == 'windows-latest' }}
+      # - uses: cygwin/cygwin-install-action@master
+      #  if: ${{ matrix.os == 'windows-latest' }}
 
       - name: Run Unit tests
-        run: bash dev/pytest/pytest_unit_tests.sh
+        run: gitbash.exe dev/pytest/pytest_unit_tests.sh
 
       - name: Run ModelRuntime
         run: bash dev/pytest/pytest_model_runtime.sh
