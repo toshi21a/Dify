@@ -1,4 +1,4 @@
 #!/bin/bash
 set -x
 
-pytest api/tests/integration_tests/vdb/
+coverage run -a -m pytest api/tests/integration_tests/vdb/
