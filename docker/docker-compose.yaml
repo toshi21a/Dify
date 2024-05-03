@@ -251,6 +251,14 @@ services:
       RELYT_USER: postgres
       RELYT_PASSWORD: difyai123456
       RELYT_DATABASE: postgres
+      # tencent configurations
+      TENCENT_VECTOR_DB_URL: http://127.0.0.1
+      TENCENT_VECTOR_DB_API_KEY: dify
+      TENCENT_VECTOR_DB_TIMEOUT: 30
+      TENCENT_VECTOR_DB_USERNAME: dify
+      TENCENT_VECTOR_DB_DATABASE: dify
+      TENCENT_VECTOR_DB_SHARD: 1
+      TENCENT_VECTOR_DB_REPLICAS: 2
       # Notion import configuration, support public and internal
       NOTION_INTEGRATION_TYPE: public
       NOTION_CLIENT_SECRET: you-client-secret
