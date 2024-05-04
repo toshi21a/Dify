@@ -3,7 +3,6 @@ from copy import deepcopy
 from typing import Any, Union
 
 from pydantic import BaseModel
-from yaml import FullLoader, load
 
 from core.helper import encrypter
 from core.helper.tool_parameter_cache import ToolParameterCache, ToolParameterCacheType
@@ -16,6 +15,7 @@ from core.tools.entities.tool_entities import (
 )
 from core.tools.provider.tool_provider import ToolProviderController
 from core.tools.tool.tool import Tool
+from core.tools.utils.yaml_utils import load_yaml_file
 
 
 class ToolConfigurationManager(BaseModel):
@@ -254,14 +254,14 @@ class ModelToolConfigurationManager:
 
         for file in files:
             provider = file.split('.')[0]
-            with open(os.path.join(model_tools_path, file), encoding='utf-8') as f:
-                configurations = ModelToolProviderConfiguration(**load(f, Loader=FullLoader))
-                models = configurations.models or []
-                for model in models:
-                    model_key = f'{provider}.{model.model}'
-                    cls._model_configurations[model_key] = model
+            yaml_data = load_yaml_file(os.path.join(model_tools_path, file))
+            configurations = ModelToolProviderConfiguration(**yaml_data)
+            models = configurations.models or []
+            for model in models:
+                model_key = f'{provider}.{model.model}'
+                cls._model_configurations[model_key] = model
 
-                cls._configurations[provider] = configurations
+            cls._configurations[provider] = configurations
         cls._inited = True
 
     @classmethod
