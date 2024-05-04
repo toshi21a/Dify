@@ -10,8 +10,14 @@ from flask import current_app
 
 from extensions.ext_storage import storage
 
+AUDIO_EXTENSIONS = ['mp3', 'm4a', 'wav', 'webm', 'amr']
+VIDEO_EXTENSIONS = ['mp4', 'mov', 'mpeg', 'mpga']
+MEDIA_EXTENSIONS = AUDIO_EXTENSIONS + VIDEO_EXTENSIONS
+
 IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg']
-IMAGE_EXTENSIONS.extend([ext.upper() for ext in IMAGE_EXTENSIONS])
+
+ALLOWED_EXTENSIONS = ['txt', 'markdown', 'md', 'pdf', 'html', 'htm', 'xlsx', 'xls', 'docx', 'csv', 'epub']
+UNSTRUSTURED_ALLOWED_EXTENSIONS = ['txt', 'markdown', 'md', 'pdf', 'html', 'htm', 'xlsx', 'xls', 'docx', 'csv', 'eml', 'msg', 'pptx', 'ppt', 'xml', 'epub']
 
 
 class UploadFileParser:

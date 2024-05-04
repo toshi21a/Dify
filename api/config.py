@@ -272,7 +272,7 @@ class Config:
         self.SMTP_USERNAME = get_env('SMTP_USERNAME')
         self.SMTP_PASSWORD = get_env('SMTP_PASSWORD')
         self.SMTP_USE_TLS = get_bool_env('SMTP_USE_TLS')
-        
+
         # ------------------------
         # Workspace Configurations.
         # ------------------------
