@@ -1,0 +1,103 @@
+identity:
+  name: searchRepos
+  author: Richards Tu, CharlieWei
+  label:
+    en_US: Search Repositories
+    zh_Hans: 搜索代码库
+description:
+  human:
+    en_US: A tool for searching GitHub repositories by name.
+    zh_Hans: 通过名称搜索GitHub代码库的工具。
+  llm: A tool for searching GitHub repositories by name.
+parameters:
+  - name: q
+    type: string
+    required: true
+    label:
+      en_US: Query
+      zh_Hans: 查询
+    human_description:
+      en_US: The query string to search for repositories by name.
+      zh_Hans: 用于按名称搜索代码库的查询字符串。
+    llm_description: The query string to search for repositories by name.
+    form: llm
+  - name: sort
+    type: select
+    required: false
+    label:
+      en_US: Sort
+      zh_Hans: 排序
+    human_description:
+      en_US: Sorts the results of your query.
+      zh_Hans: 对查询结果进行排序。
+    llm_description: Sorts the results of your query.
+    form: llm
+    options:
+      - value: stars
+        label:
+          en_US: Stars
+          zh_Hans: 星标
+      - value: forks
+        label:
+          en_US: Forks
+          zh_Hans: 分支
+      - value: help-wanted-issues
+        label:
+          en_US: Help Wanted Issues
+          zh_Hans: 需求帮助问题
+      - value: updated
+        label:
+          en_US: Updated
+          zh_Hans: 更新时间
+  - name: order
+    type: select
+    required: false
+    label:
+      en_US: Order
+      zh_Hans: 排序顺序
+    human_description:
+      en_US: Order of the search results.
+      zh_Hans: 搜索结果的排序顺序。
+    form: form
+    options:
+      - value: desc
+        label:
+          en_US: Descending
+          zh_Hans: 降序
+      - value: asc
+        label:
+          en_US: Ascending
+          zh_Hans: 升序
+    default: desc
+  - name: page
+    type: number
+    required: true
+    default: 10
+    label:
+      en_US: Page
+      zh_Hans: 页码
+    human_description:
+      en_US: Page number of the results to fetch.
+      zh_Hans: 要获取的结果的页码。
+    form: form
+    min: 1
+    max: 20
+  - name: per_page
+    type: number
+    required: true
+    default: 10
+    label:
+      en_US: Results per Page
+      zh_Hans: 每页结果数
+    human_description:
+      en_US: Number of results per page.
+      zh_Hans: 每页的结果数。
+    form: form
+    min: 1
+    max: 20
+output:
+  type: json
+  properties:
+    - name: repositories
+      type: array
+      items_ref: Repository

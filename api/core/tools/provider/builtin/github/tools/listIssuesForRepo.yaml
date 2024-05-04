@@ -1,0 +1,66 @@
+identity:
+  name: listIssuesForRepo
+  author: Richards Tu
+  label:
+    en_US: List Issues for Repository
+    zh_Hans: 列出仓库的问题
+description:
+  human:
+    en_US: Lists all issues for a specified GitHub repository.
+    zh_Hans: 列出指定 GitHub 仓库的所有问题。
+  llm: A tool for listing all issues for a specified GitHub repository.
+parameters:
+  - name: owner
+    type: string
+    required: true
+    label:
+      en_US: Repository Owner
+      zn_Hans: 仓库所有者
+    human_description:
+      en_US: Owner of the repository.
+      zh_Hans: 仓库所有者。
+    llm_description: Owner of the repository.
+    form: llm
+  - name: repo
+    type: string
+    required: true
+    label:
+      en_US: Repository Name
+      zh_Hans: 仓库名称
+    human_description:
+      en_US: Name of the repository.
+      zh_Hans: 仓库名称。
+    llm_description: Name of the repository.
+    form: llm
+  - name: page
+    type: number
+    required: true
+    default: 10
+    label:
+      en_US: Page
+      zh_Hans: 页码
+    human_description:
+      en_US: Page number of the results to fetch.
+      zh_Hans: 要获取的结果的页码。
+    form: form
+    min: 1
+    max: 20
+  - name: per_page
+    type: number
+    required: true
+    default: 10
+    label:
+      en_US: Results per Page
+      zh_Hans: 每页结果数
+    human_description:
+      en_US: Number of results per page.
+      zh_Hans: 每页的结果数。
+    form: form
+    min: 1
+    max: 20
+output:
+  type: json
+  properties:
+    - name: issues
+      type: array
+      items_ref: Issue
