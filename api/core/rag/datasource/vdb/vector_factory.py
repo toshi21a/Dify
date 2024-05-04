@@ -139,6 +139,33 @@ class Vector:
                 ),
                 group_id=self._dataset.id
             )
+        elif vector_type == "elasticsearch":
+            from core.rag.datasource.vdb.elasticsearch.elasticsearch_vector import (
+                ElasticSearchConfig,
+                ElasticSearchVector,
+            )
+            if self._dataset.index_struct_dict:
+                class_prefix: str = self._dataset.index_struct_dict['vector_store']['class_prefix']
+                index_name = class_prefix
+            else:
+                dataset_id = self._dataset.id
+                index_name = Dataset.gen_collection_name_by_id(dataset_id)
+                index_struct_dict = {
+                    "type": 'elasticsearch',
+                    "vector_store": {"class_prefix": index_name}
+                }
+                self._dataset.index_struct = json.dumps(index_struct_dict)
+            dim = len(self._embeddings.embed_query("hello elasticsearch"))
+            return ElasticSearchVector(
+                index_name=index_name,
+                config=ElasticSearchConfig(
+                    host=config.get('ELASTICSEARCH_HOST'),
+                    port=config.get('ELASTICSEARCH_PORT'),
+                    api_key_id=config.get('ELASTICSEARCH_API_KEY_ID'),
+                    api_key=config.get('ELASTICSEARCH_API_KEY'),
+                ),
+                dim=dim
+            )
         elif vector_type == "pgvecto_rs":
             from core.rag.datasource.vdb.pgvecto_rs.pgvecto_rs import PGVectoRS, PgvectoRSConfig
             if self._dataset.index_struct_dict:
